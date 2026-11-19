@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillForge — Career &amp; Skill Assessment</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="brand">SkillForge</a>
+      <div id="user-session-info" class="mono" style="font-size:0.85rem"></div>
+    </div>
+  </header>
+
+  <main class="dashboard-grid">
+    <aside class="sidebar-panel">
+      <h2 style="font-size:2rem;margin-bottom:1rem">Target Tracks</h2>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:2rem">
+        Select your intended engineering domain to evaluate skill gaps against career blueprints.
+      </p>
+
+      <div class="form-group">
+        <label class="form-label" for="careerSelect">Active Career Blueprint</label>
+        <select id="careerSelect" class="form-input" required>
+          <option value="">Loading careers...</option>
+        </select>
+      </div>
+
+      <button id="load-gap-btn" class="btn-editorial" type="button" style="width:100%;margin-top:1rem">
+        Compute Skill Gap
+      </button>
+      <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+    </aside>
+
+    <section class="main-content">
+      <div style="margin-bottom:2.5rem">
+        <span class="badge badge-accent">Assessment Matrix</span>
+        <h1 style="font-size:3rem;margin-top:0.5rem">Skill Gap Evaluation</h1>
+      </div>
+
+      <div class="editorial-card">
+        <form id="gapForm">
+          <h3 style="font-size:1.5rem;margin-bottom:1rem">Possessed Competencies</h3>
+          <p style="color:var(--text-muted);margin-bottom:1.5rem">
+            Select the core skills you have already acquired through coursework or projects.
+          </p>
+
+          <div id="skillsContainer" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;margin-bottom:2rem">
+            <p class="muted">Choose a career track to load its required skills.</p>
+          </div>
+
+          <div id="gap-results" class="editorial-card" hidden aria-live="polite"></div>
+          <button id="save-assessment-btn" class="btn-editorial btn-outline" type="submit">
+            Save Profile &amp; Proceed to Roadmap &rarr;
+          </button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/skill-gap.js"></script>
+</body>
+</html>

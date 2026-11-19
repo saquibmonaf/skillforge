@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard — SkillForge</title>
+</head>
+<body>
+  <header>
+    <h1>SkillForge</h1>
+    <span id="greeting"></span>
+    <button id="logoutBtn" type="button">Logout</button>
+  </header>
+
+  <main>
+    <section>
+      <label for="careerSelect">Target Career:</label>
+      <select id="careerSelect">
+        <option value="">Choose a career path</option>
+      </select>
+    </section>
+
+    <section>
+      <h2>Your Progress</h2>
+      <div style="background:#e5e7eb;border-radius:6px;height:14px;">
+        <div id="progressBar" style="background:#10b981;height:14px;width:0;border-radius:6px;transition:width .3s;"></div>
+      </div>
+      <small id="progressText">0% complete</small>
+    </section>
+
+    <section>
+      <h2>Skill-Gap Roadmap</h2>
+      <form id="gapForm">
+        <fieldset id="possessedSkills">
+          <legend>Skills you already have</legend>
+          <label><input type="checkbox" value="HTML5 &amp; CSS3"> HTML5 &amp; CSS3</label>
+          <label><input type="checkbox" value="Git &amp; GitHub"> Git &amp; GitHub</label>
+          <label><input type="checkbox" value="JavaScript (ES6+)"> JavaScript (ES6+)</label>
+        </fieldset>
+        <button type="submit">Re-run Gap Analysis</button>
+      </form>
+      <div id="roadmap"></div>
+      <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

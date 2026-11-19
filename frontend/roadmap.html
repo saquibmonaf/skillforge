@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillForge — Execution Roadmap</title>
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="skill-gap.html" class="brand">&larr; Back to Assessment</a>
+      <span class="mono" style="font-size:0.85rem">Milestone Tracker</span>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top:3rem;padding-bottom:3rem">
+    <div style="margin-bottom:2.5rem;display:flex;justify-content:space-between;align-items:flex-end;gap:1rem">
+      <div>
+        <span class="badge badge-success">Active Path</span>
+        <h1 id="careerTitle" style="font-size:3rem;margin-top:0.5rem">Execution Roadmap</h1>
+      </div>
+      <div style="text-align:right">
+        <span class="mono" style="font-size:0.8rem;color:var(--text-muted)">Readiness Index</span>
+        <div id="percentage-label" class="mono" style="font-size:1.5rem;font-weight:500">0%</div>
+      </div>
+    </div>
+
+    <div class="progress-container" aria-label="Task completion">
+      <div id="progressBar" class="progress-bar-fill"></div>
+      <div id="progressText" class="progress-text">0 / 0 Tasks Completed</div>
+    </div>
+
+    <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+
+    <div class="editorial-card" style="margin-top:2rem">
+      <h2 style="font-size:1.5rem;margin-bottom:1.5rem">Actionable Learning Tasks</h2>
+      <div id="roadmap">
+        <p class="muted">Loading your roadmap...</p>
+      </div>
+    </div>
+  </main>
+
+  <script src="./assets/js/api.js"></script>
+  <script src="./assets/js/roadmap.js"></script>
+</body>
+</html>

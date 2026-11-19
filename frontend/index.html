@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillForge — Learn. Grow. Get Hired.</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">◆</span> SkillForge
+    </a>
+    <div class="nav-links" id="navAuth"></div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Bridge the gap between<br><span class="accent">where you are</span> and <span class="accent">where you want to be</span>.</h1>
+      <p class="lead">
+        SkillForge analyzes your current skills against industry career blueprints,
+        creates a personalized learning roadmap,         and tracks your progress as you build toward a career.
+      </p>
+      <div class="hero-cta">
+        <a href="register.html" class="btn btn-primary btn-lg">Get Started Free</a>
+        <a href="login.html" class="btn btn-secondary btn-lg">I have an account</a>
+      </div>
+    </section>
+
+    <section class="grid-3" aria-label="Features">
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🎯</div>
+        <h3>Skill Gap Analysis</h3>
+        <p>See which skills separate you from your target career.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">🗺️</div>
+        <h3>Personalized Roadmap</h3>
+        <p>Follow an ordered, task-by-task path for each missing skill.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon" aria-hidden="true">📈</div>
+        <h3>Progress Tracking</h3>
+        <p>Check off tasks as you learn and track your completion.</p>
+      </article>
+    </section>
+
+    <section id="hubCards" class="grid-2 hidden" aria-label="Your learning hub">
+      <a href="skill-gap.html" class="card card-link">
+        <div class="card-icon" aria-hidden="true">🎯</div>
+        <h3>Analyze a New Career</h3>
+        <p>Pick a career and see your current skill gap.</p>
+      </a>
+      <a href="roadmap.html" class="card card-link">
+        <div class="card-icon" aria-hidden="true">🗺️</div>
+        <h3>Continue Your Roadmap</h3>
+        <p>Return to your active learning path.</p>
+      </a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>SkillForge · Career Blueprints · Skill-Gap Analysis · Learning Roadmaps</p>
+  </footer>
+
+  <script src="assets/js/api.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const navAuth = document.getElementById("navAuth");
+      if (!Token.get()) {
+        const loginLink = document.createElement("a");
+        loginLink.href = "login.html";
+        loginLink.className = "btn btn-secondary";
+        loginLink.textContent = "Login";
+
+        const registerLink = document.createElement("a");
+        registerLink.href = "register.html";
+        registerLink.className = "btn btn-primary";
+        registerLink.textContent = "Get Started";
+
+        navAuth.append(loginLink, registerLink);
+        return;
+      }
+
+      const user = Token.getUser();
+      const greeting = document.createElement("span");
+      greeting.className = "nav-greeting";
+      greeting.textContent = `Hi, ${(user && user.name) || "Student"}`;
+
+      const analyzeLink = document.createElement("a");
+      analyzeLink.href = "skill-gap.html";
+      analyzeLink.className = "btn btn-secondary";
+      analyzeLink.textContent = "Analyze";
+
+      const roadmapLink = document.createElement("a");
+      roadmapLink.href = "roadmap.html";
+      roadmapLink.className = "btn btn-primary";
+      roadmapLink.textContent = "Roadmap";
+
+      const logoutButton = document.createElement("button");
+      logoutButton.type = "button";
+      logoutButton.className = "btn btn-ghost";
+      logoutButton.textContent = "Logout";
+      logoutButton.addEventListener("click", () => {
+        Token.clear();
+        Token.clearUser();
+        location.reload();
+      });
+
+      navAuth.append(greeting, analyzeLink, roadmapLink, logoutButton);
+      document.getElementById("hubCards").classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
