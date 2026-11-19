@@ -2,9 +2,9 @@
   "name": "skillforge-backend",
   "version": "1.0.0",
   "description": "Backend API for SkillForge career blueprints, skill-gap analysis, and learning roadmaps",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node index.js",
     "dev": "nodemon server.js",
     "seed": "node utils/seed.js",
     "seed:reset": "node utils/seed.js --reset"
