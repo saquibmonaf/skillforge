@@ -2,17 +2,20 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors');
+const cors = require("cors");
+
 // ---------- Route imports ----------
 const authRoutes = require("./routes/authRoutes");
 const apiRoutes = require("./routes/apiRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
 const configuredOrigins = (process.env.CLIENT_ORIGIN || process.env.CLIENT_URL || "")
   .split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/+$/, ""))
   .filter(Boolean);
+
 const allowedOrigins = [
   "http://localhost:5000",
   "http://127.0.0.1:5000",
@@ -31,7 +34,8 @@ app.use(express.json({ limit: "1mb" }));
 app.use(
   cors({
     origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
+      const normalizedOrigin = origin ? origin.replace(/\/+$/, "") : origin;
+      if (!normalizedOrigin || allowedOrigins.includes(normalizedOrigin)) {
         return callback(null, true);
       }
       const error = new Error("Not allowed by CORS");
@@ -62,7 +66,7 @@ app.get("/api/health", (_req, res) =>
 );
 
 // ============================================================
-// ROUTES
+// API ROUTES
 // ============================================================
 app.use("/api/auth", authRoutes);
 app.use("/api", apiRoutes);
