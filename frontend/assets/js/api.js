@@ -2,7 +2,12 @@
  * Central API configuration and fetch wrapper.
  * Load this before auth.js or dashboard.js on each page.
  */
-const API_BASE_URL = (window.SF_API_BASE || "http://localhost:5000/api").replace(/\/+$/, "");
+const DEFAULT_API_BASE =
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://localhost:5000/api"
+    : "https://skillforge-8nnp.onrender.com/api";
+
+const API_BASE_URL = (window.SF_API_BASE || DEFAULT_API_BASE).replace(/\/+$/, "");
 const AUTH_RETURN_TO_KEY = "sf_auth_return_to";
 const AUTH_RETURN_PAGES = new Set(["skill-gap.html", "roadmap.html"]);
 const JWT_SHAPE = /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/;
